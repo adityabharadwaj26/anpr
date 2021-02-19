@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <a href="/" style=" text-decoration:none;" color="primary" style="color: inherit;">
+            <span>Automatic Number Plate Recognition</span>
+        </a>
+
+        <!-- <a mat-button [routerLink]="'/'" style="color: inherit;"> Templates </a>
+        <a mat-button [routerLink]="'/batches'" style="color: inherit;"> Batch </a>
+        <a mat-button [routerLink]="'/pdfeditor'" style="color: inherit;"> PDF Editor </a> -->
+
+        <span class="fillSpace"></span>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <!-- <mat-icon>more_vert</mat-icon> -->
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()" color="primary">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>Logout</span>
+            </button>
+            <button mat-menu-item [disabled]="true" color="primary">
+                <mat-icon>settings</mat-icon>
+                <span>Settings</span>
+            </button>
+            <button mat-menu-item [disabled]="true" color="primary">
+                <mat-icon>account_circle</mat-icon>
+                <span>Account</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>

@@ -1,0 +1,46 @@
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center" style="margin: 5px;">
+    <mat-card fxFlex="80%" fxLayoutAlign="center">
+        <input class="input" (change)="onSelectFile($event)" type="file" />
+    </mat-card>
+</div>
+
+<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+    <div fxFlex="50%">
+        <mat-card>
+            <div fxLayout="row">
+                <!-- <button mat-button color="primary" class="mat-button-css">
+                    <mat-icon backButton>arrow_back</mat-icon>
+                </button> -->
+                <span class="fillSpace"></span>
+                <mat-card-title align="center">Number Plate Information</mat-card-title>
+                <span class="fillSpace"></span>
+                <!-- <button mat-button color="primary" class="mat-button-css" (click)='addImage()'>
+                    <mat-icon>add</mat-icon>
+                </button> -->
+            </div>
+            <mat-card-content>
+                <form [formGroup]="form">
+                    <div fxLayout="row wrap" fxLayoutGap="5px grid" fxLayoutAlign="center center"
+                        style="align-items: baseline;">
+                        <mat-form-field fxFlex="50%" class="form-field " appearance="outline" fxLayoutAlign="center">
+                            <mat-label>Number Plate</mat-label>
+                            <input class="input-class" matInput formControlName="numberPLate"
+                                placeholder="Number Plate">
+                        </mat-form-field>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div fxFlex="50%">
+        <mat-card>
+            <div fxLayout="row">
+                <span class="fillSpace"></span>
+                <mat-card-title align="center">Number Plate Image</mat-card-title>
+                <span class="fillSpace"></span>
+            </div>
+            <!-- <p>Image View</p> -->
+            <img class="images" [src]="imgResponse" />
+        </mat-card>
+    </div>
+</div>
