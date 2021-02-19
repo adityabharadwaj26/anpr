@@ -8,6 +8,17 @@
     <div fxFlex="50%">
         <mat-card>
             <div fxLayout="row">
+                <span class="fillSpace"></span>
+                <mat-card-title align="center">Number Plate Image</mat-card-title>
+                <span class="fillSpace"></span>
+            </div>
+            <!-- <p>Image View</p> -->
+            <img class="images" [src]="imgUpload" />
+        </mat-card>
+    </div>
+    <div fxFlex="50%">
+        <mat-card>
+            <div fxLayout="row">
                 <!-- <button mat-button color="primary" class="mat-button-css">
                     <mat-icon backButton>arrow_back</mat-icon>
                 </button> -->
@@ -18,29 +29,26 @@
                     <mat-icon>add</mat-icon>
                 </button> -->
             </div>
-            <mat-card-content>
-                <form [formGroup]="form">
-                    <div fxLayout="row wrap" fxLayoutGap="5px grid" fxLayoutAlign="center center"
-                        style="align-items: baseline;">
-                        <mat-form-field fxFlex="50%" class="form-field " appearance="outline" fxLayoutAlign="center">
-                            <mat-label>Number Plate</mat-label>
-                            <input class="input-class" matInput formControlName="numberPLate"
-                                placeholder="Number Plate">
-                        </mat-form-field>
-                    </div>
-                </form>
-            </mat-card-content>
-        </mat-card>
-    </div>
-    <div fxFlex="50%">
-        <mat-card>
-            <div fxLayout="row">
-                <span class="fillSpace"></span>
-                <mat-card-title align="center">Number Plate Image</mat-card-title>
-                <span class="fillSpace"></span>
+            <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+                <mat-card-content fxFlex="50%">
+                    <img class="responseImage" [src]="imgResponse" />
+                </mat-card-content>
+
+                <mat-card-content fxFlex="50%">
+                    <form [formGroup]="form">
+                        <div fxLayout="row wrap" fxLayoutGap="5px grid" fxLayoutAlign="center center"
+                            style="align-items: baseline;">
+                            <mat-form-field fxFlex="50%" class="form-field " appearance="outline"
+                                fxLayoutAlign="center">
+                                <mat-label>Number Plate</mat-label>
+                                <input class="input-class" matInput formControlName="numberPLate"
+                                    placeholder="Number Plate">
+                            </mat-form-field>
+                        </div>
+                    </form>
+                </mat-card-content>
             </div>
-            <!-- <p>Image View</p> -->
-            <img class="images" [src]="imgResponse" />
         </mat-card>
     </div>
+
 </div>

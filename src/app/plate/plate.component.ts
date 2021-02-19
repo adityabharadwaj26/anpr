@@ -12,6 +12,7 @@ export class PlateComponent implements OnInit {
   file: any;
   imgResponse: any;
   form: FormGroup;
+  imgUpload: any;
 
   constructor(
     private anprService: AnprService,
@@ -36,10 +37,12 @@ export class PlateComponent implements OnInit {
       const reader = new FileReader();
       reader.addEventListener('loadend', () => {
         this.file = reader.result;
+        this.imgUpload = this.file;
         this.imgResponse = this.file;
         this.anprService.getPlate(this.file).subscribe((res) => {
           console.log(res);
           this.imgResponse = res;
+          // this.imgUpload = this.file;
           this.patchNumberPlate(res.text);
         });
       });
