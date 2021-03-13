@@ -6,14 +6,15 @@
 
 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
     <div fxFlex="50%">
-        <mat-card>
+        <mat-card color="primary">
             <div fxLayout="row">
                 <span class="fillSpace"></span>
                 <mat-card-title align="center">Number Plate Image</mat-card-title>
                 <span class="fillSpace"></span>
             </div>
-            <!-- <p>Image View</p> -->
+            <!-- <mat-card-content> -->
             <img class="images" [src]="imgUpload" />
+            <!-- </mat-card-content> -->
         </mat-card>
     </div>
     <div fxFlex="50%">
@@ -29,15 +30,10 @@
                     <mat-icon>add</mat-icon>
                 </button> -->
             </div>
-            <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
-                <mat-card-content fxFlex="50%">
-                    <img class="responseImage" [src]="imgResponse" />
-                </mat-card-content>
-
-                <mat-card-content fxFlex="50%">
+            <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
+                <div fxFlex="70%">
                     <form [formGroup]="form">
-                        <div fxLayout="row wrap" fxLayoutGap="5px grid" fxLayoutAlign="center center"
-                            style="align-items: baseline;">
+                        <div fxLayout="row wrap" fxLayoutGap="5px grid" fxLayoutAlign="center center">
                             <mat-form-field fxFlex="50%" class="form-field " appearance="outline"
                                 fxLayoutAlign="center">
                                 <mat-label>Number Plate</mat-label>
@@ -46,7 +42,10 @@
                             </mat-form-field>
                         </div>
                     </form>
-                </mat-card-content>
+                </div>
+                <div fxFlex="30%">
+                    <img class="responseImage" [src]="imgResponse" />
+                </div>
             </div>
         </mat-card>
     </div>
