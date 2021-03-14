@@ -13,6 +13,7 @@ export class PlateComponent implements OnInit {
   imgResponse: any;
   form: FormGroup;
   imgUpload: any;
+  image: any;
 
   constructor(
     private anprService: AnprService,
@@ -32,23 +33,29 @@ export class PlateComponent implements OnInit {
 
   onSelectFile(e: { target: { files: string | any[]; }; }): void {
     console.log(e.target.files);
+    const img = e.target.files[0];
+    this.getPlateInfo(img);
     if (e.target.files && e.target.files.length > 0) {
       // this.file = e.target.files[0];
       const reader = new FileReader();
       reader.addEventListener('loadend', () => {
-        this.file = reader.result;
-        this.imgUpload = this.file;
-        this.imgResponse = this.file;
-        this.anprService.getPlate(this.file).subscribe((res) => {
-          console.log(res);
-          this.imgResponse = res;
-          // this.imgUpload = this.file;
-          this.patchNumberPlate(res.text);
-        });
+        this.image = reader.result;
+        this.imgUpload = this.image;
       });
-      reader.readAsDataURL(e.target.files[0]);
+      reader.readAsDataURL(img);
     }
   }
+  private getPlateInfo(e): void {
+    const file = new FormData();
+    file.append('file', e);
+    this.anprService.getPlate(file).subscribe((res) => {
+      console.log(res);
+      this.imgResponse = res.plate;
+      // this.imgUpload = this.file;
+      this.patchNumberPlate(res.number);
+    });
+  }
+
   patchNumberPlate(text) {
     this.form.patchValue({ numberPLate: text });
   }

@@ -13,7 +13,7 @@ export class AnprService {
   getPlate(plateImage): Observable<any> {
     // console.log(plateImage);
     const params = new HttpHeaders({ accept: 'application/json' });
-    const POST_URL: string = environment.API_BASE_URL + 'getPLate';
+    const POST_URL: string = environment.API_BASE_URL + 'process_plate';
     return this.http.post<any>(POST_URL, plateImage, { headers: params });
   }
 }
