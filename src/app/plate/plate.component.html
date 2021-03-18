@@ -3,6 +3,7 @@
         <input class="input" (change)="onSelectFile($event)" type="file" />
     </mat-card>
 </div> -->
+<br>
 
 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
     <div fxFlex="50%">
@@ -44,8 +45,7 @@
                 <div fxFlex="70%">
                     <form [formGroup]="form">
                         <div fxLayout="row wrap" fxLayoutGap="5px grid" fxLayoutAlign="center center">
-                            <mat-form-field fxFlex="50%" class="form-field " appearance="outline"
-                                fxLayoutAlign="center">
+                            <mat-form-field class="form-field " appearance="outline" fxFlex>
                                 <mat-label>Number Plate</mat-label>
                                 <input class="input-class" matInput formControlName="numberPLate"
                                     placeholder="Number Plate">

@@ -1,7 +1,7 @@
 .input-class {
   /* padding: 5px; */
   /* margin: 5px; */
-  font-size: x-large;
+  font-size: large;
   font-weight: bolder;
 }
 .logo {
@@ -14,7 +14,7 @@
 .fillSpace {
   flex: 1 1 auto;
 }
-mat-card-title {
+/* mat-card-title {
   margin-top: 10px;
 }
 mat-card-title:not(:first-child) {
@@ -22,21 +22,18 @@ mat-card-title:not(:first-child) {
 }
 .mat-button-css {
   margin: 2px;
-}
+} */
 
-.fullWidth {
+/* .fullWidth {
   width: 90%;
   height: 80%;
-}
+} */
 
 .images {
-  /* height: auto; */
-  /* width: 100%; */
   max-height: 600px;
   object-fit: cover;
 }
 .responseImage {
-  /* height: 50%; */
   width: 100%;
   object-fit: contain;
 }
