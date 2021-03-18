@@ -1,6 +1,6 @@
 import { AnprService } from './../anpr.service';
 import { element } from 'protractor';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,22 +9,59 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./plate.component.css']
 })
 export class PlateComponent implements OnInit {
+  @ViewChild('imageRef') imageRef: ElementRef;
   file: any;
   imgResponse: any;
   form: FormGroup;
   imgUpload: any;
   image: any;
+  context;
+  video: HTMLVideoElement;
+  canvas: HTMLCanvasElement;
+  w;
+  h;
+  ratio;
+  imageElement: HTMLImageElement;
+  // videoSource;
+  // videoSource1;
+  videoSourceform: FormGroup;
+  videoSourceSubmitted: any;
 
   constructor(
+    private el: ElementRef,
     private anprService: AnprService,
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
       numberPLate: [''],
     });
+    this.videoSourceform = this.fb.group({
+      videoSource: [''],
+    });
   }
 
   ngOnInit(): void {
+  }
+
+  changeSource() {
+    const obj = this.videoSourceform.getRawValue();
+    console.log(obj);
+    this.videoSourceSubmitted = obj.videoSource;
+  }
+
+  snap() {
+    // this.context.fillRect(0, 0, this.w, this.h);
+    this.canvas = document.createElement('canvas');
+    this.canvas.width = 640;
+    this.canvas.height = 480;
+    this.context = this.canvas.getContext('2d');
+    this.w = this.imageRef.nativeElement.width;
+    this.h = this.imageRef.nativeElement.height;
+    this.imageRef.nativeElement.crossOrigin = 'anonymous';
+    this.context.drawImage(this.imageRef.nativeElement, 0, 0, this.w, this.h);
+    const dataURI = this.canvas.toDataURL('image/jpeg'); // can also use 'image/png'
+    this.imgResponse = dataURI;
+    this.getPlateInfo(this.imgResponse);
   }
 
   addImage() {

@@ -1,8 +1,8 @@
-<div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center" style="margin: 5px;">
+<!-- <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center" style="margin: 5px;">
     <mat-card fxFlex="80%" fxLayoutAlign="center">
         <input class="input" (change)="onSelectFile($event)" type="file" />
     </mat-card>
-</div>
+</div> -->
 
 <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
     <div fxFlex="50%">
@@ -12,23 +12,33 @@
                 <mat-card-title align="center">Number Plate Image</mat-card-title>
                 <span class="fillSpace"></span>
             </div>
-            <!-- <mat-card-content> -->
-            <img class="images" [src]="imgUpload" />
+            <form fxLayout="row" [formGroup]="videoSourceform">
+                <input name="videoSource" formControlName="videoSource" matInput placeholder="Video Source">
+                <button mat-icon-button matTooltip="Change Camera" color="primary" (click)="changeSource()">
+                    <mat-icon>send</mat-icon>
+                </button>
+            </form>
+            <!-- <img class="images" [src]="imgUpload" /> -->
+            <!-- <video width="640" height="480" controls>
+                <source src="http://192.168.0.164:8080/video" type="video/webm">
+                <source src="http://192.168.0.164:8080/video" type="video/mp4">
+                Your browser does not support the video tag.
+            </video> -->
+            <!-- <img #imageRef id="main" border="0" width="640" height="480" src="http://192.168.0.164:8080/video"> -->
+            <div *ngIf="videoSourceSubmitted">
+                <img #imageRef id="main" border="0" width="640" height="480" [src]="videoSourceSubmitted">
+                <button mat-raised-button color="primary" (click)="snap()">Take screenshot</button>
+            </div>
             <!-- </mat-card-content> -->
         </mat-card>
     </div>
     <div fxFlex="50%">
         <mat-card style="text-align: center;">
             <div fxLayout="row">
-                <!-- <button mat-button color="primary" class="mat-button-css">
-                    <mat-icon backButton>arrow_back</mat-icon>
-                </button> -->
+
                 <span class="fillSpace"></span>
                 <mat-card-title align="center">Number Plate Information</mat-card-title>
                 <span class="fillSpace"></span>
-                <!-- <button mat-button color="primary" class="mat-button-css" (click)='addImage()'>
-                    <mat-icon>add</mat-icon>
-                </button> -->
             </div>
             <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
                 <div fxFlex="70%">
