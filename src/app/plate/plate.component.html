@@ -4,14 +4,14 @@
     </mat-card>
 </div> -->
 <br>
-<mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Video">
+<mat-tab-group mat-align-tabs="center" (selectedTabChange)="tabClick($event)">
+    <mat-tab label="IP Camera">
         <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
             <div fxFlex="50%">
                 <mat-card color="primary" style="text-align: center;">
                     <div fxLayout="row">
                         <span class="fillSpace"></span>
-                        <mat-card-title align="center">Number Plate Image</mat-card-title>
+                        <mat-card-title align="center">Enter Source IP</mat-card-title>
                         <span class="fillSpace"></span>
                     </div>
                     <form fxLayout="row" [formGroup]="videoSourceform">
@@ -31,8 +31,9 @@
                     </video> -->
                     <!-- <img #imageRef id="main" border="0" width="640" height="480" src="http://192.168.0.164:8080/video"> -->
                     <div *ngIf="videoSourceSubmitted">
-                        <img #imageRef id="main" border="0" width="640" height="480" [src]="videoSourceSubmitted">
-                        <button mat-raised-button color="primary" (click)="snap()">Take screenshot</button>
+                        <img #imageRef class="imageClass" id="main" border="0" width="640" height="480"
+                            [src]="videoSourceSubmitted">
+                        <button mat-raised-button color="primary" (click)="snapIpCamera()">Take screenshot</button>
                     </div>
                     <!-- </mat-card-content> -->
                 </mat-card>
@@ -41,6 +42,66 @@
                 <mat-card style="text-align: center;">
                     <div fxLayout="row">
 
+                        <span class="fillSpace"></span>
+                        <mat-card-title align="center">Number Plate Information</mat-card-title>
+                        <span class="fillSpace"></span>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly center">
+                        <div fxFlex="70%">
+                            <form [formGroup]="form">
+                                <div fxLayout="row wrap" fxLayoutGap="5px grid" fxLayoutAlign="center center">
+                                    <mat-form-field class="form-field " appearance="outline" fxFlex>
+                                        <mat-label>Number Plate</mat-label>
+                                        <input class="input-class" matInput formControlName="numberPLate"
+                                            placeholder="Number Plate">
+                                    </mat-form-field>
+                                </div>
+                            </form>
+                        </div>
+                        <div fxFlex="30%">
+                            <img class="responseImage" [src]="imgResponse" />
+                        </div>
+                    </div>
+                </mat-card>
+            </div>
+
+        </div>
+    </mat-tab>
+    <mat-tab label="Video">
+        <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-evenly">
+            <div fxFlex="50%">
+                <mat-card color="primary" style="text-align: center;">
+                    <div fxLayout="row">
+                        <span class="fillSpace"></span>
+                        <mat-card-title align="center">Video</mat-card-title>
+                        <span class="fillSpace"></span>
+                    </div>
+                    <!-- <form fxLayout="row" [formGroup]="videoSourceform">
+                        <mat-form-field fxFlex="90%" appearance="outline">
+                            <input name="videoSource" formControlName="videoSource" matInput placeholder="Video Source">
+                        </mat-form-field>
+                        <button mat-icon-button fxFlex matTooltip="Change Camera" color="primary" (click)="changeSource()">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </form> -->
+                    <!-- <img class="images" [src]="imgUpload" /> -->
+                    <video width="640" height="480" controls>
+                        <source src="/assets/Newvideo.mp4" type="video/mp4">
+                        <!-- <source src="/assets/Traffic.mp4" type="video/mp4"> -->
+                        <!-- <source src="/assets/Traffic.mp4" type="video/webm"> -->
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- <img #imageRef id="main" border="0" width="640" height="480" src="http://192.168.0.164:8080/video"> -->
+                    <!-- <div *ngIf="videoSourceSubmitted"> -->
+                    <!-- <img #imageRef id="main" border="0" width="640" height="480" [src]="videoSourceSubmitted"> -->
+                    <button mat-raised-button color="primary" (click)="snapVideo()">Take screenshot</button>
+                    <!-- </div> -->
+                    <!-- </mat-card-content> -->
+                </mat-card>
+            </div>
+            <div fxFlex="50%">
+                <mat-card style="text-align: center;">
+                    <div fxLayout="row">
                         <span class="fillSpace"></span>
                         <mat-card-title align="center">Number Plate Information</mat-card-title>
                         <span class="fillSpace"></span>
