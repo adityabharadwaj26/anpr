@@ -59,18 +59,52 @@ export class PlateComponent implements OnInit {
     this.h = this.imageRef.nativeElement.height;
     this.imageRef.nativeElement.crossOrigin = 'anonymous';
     this.context.drawImage(this.imageRef.nativeElement, 0, 0, this.w, this.h);
-    const dataURI = this.canvas.toDataURL('image/jpeg'); // can also use 'image/png'
-    this.imgResponse = dataURI;
-    this.getPlateInfo(this.imgResponse);
+    const dataURI = this.canvas.toDataURL('image/jpeg', 1);
+    const base64result = dataURI.split(',')[1];
+    const dataBlob = this.convertBase64(base64result, 'file');
+    console.log(dataURI);
+    const dataBlob1 = this.canvas.toBlob(function (blob) {
+      console.log(blob.type);
+    }, 'file');
+    console.log(dataBlob1);
+    // console.log(this.imageRef.nativeElement.src);
+    // var link = document.createElement("a");
+    // const dataURI = this.canvas.toBlob((blob) => {
+    //   // canvas.toBlob(function(blob){
+    //   link.href = URL.createObjectURL(blob);
+    //   console.log(blob);
+    //   console.log(link.href); // this line should be here
+    // }, 'image/png')
+    // ); // can also use 'image/png'
+    // this.imgResponse = dataBlob1;
+    // this.imgResponse = dataURI;
+    const reader = new FileReader();
+    let res;
+    reader.addEventListener('loadend', () => {
+      res = reader.result;
+      // this.imgUpload = res;
+    });
+    reader.readAsDataURL(dataBlob);
+
+    console.log(res);
+    this.getPlateInfo(dataBlob);
   }
 
-  addImage() {
-    console.log('image add');
+  convertBase64(b64Data, contentType) {
+    const byteCharacters = atob(b64Data);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], { type: contentType });
   }
 
   onSelectFile(e: { target: { files: string | any[]; }; }): void {
     console.log(e.target.files);
     const img = e.target.files[0];
+    console.log(typeof img);
+    console.log(typeof e.target.files[0]);
     this.getPlateInfo(img);
     if (e.target.files && e.target.files.length > 0) {
       // this.file = e.target.files[0];
@@ -87,9 +121,13 @@ export class PlateComponent implements OnInit {
     file.append('file', e);
     this.anprService.getPlate(file).subscribe((res) => {
       console.log(res);
-      this.imgResponse = res.plate;
-      // this.imgUpload = this.file;
-      this.patchNumberPlate(res.number);
+      if (res.message === 'No Plate Detected') {
+        // this.patchNumberPlate(res.message);
+        alert(res.message);
+      } else {
+        this.imgResponse = res.plate;
+        this.patchNumberPlate(res.number);
+      }
     });
   }
 

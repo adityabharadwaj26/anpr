@@ -35,6 +35,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDialogModule,
     MatListModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
