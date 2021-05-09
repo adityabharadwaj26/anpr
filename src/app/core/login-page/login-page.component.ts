@@ -52,7 +52,8 @@ export class LoginPageComponent implements OnInit {
 
 
     this.anprService.login(this.loginDetails).subscribe(res => {
-      sessionStorage.setItem('token', res.token);
+      console.log(res);
+      sessionStorage.setItem('token', res.access_token);
       this.router.navigate(['']);
     }, error => {
       alert(JSON.stringify(error.error.error));

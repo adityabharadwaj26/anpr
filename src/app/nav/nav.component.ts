@@ -24,9 +24,9 @@ export class NavComponent {
   }
 
   logout(): void {
-    this.anprService.logout().subscribe((res) => {
-      console.log(res);
-    });
+    // this.anprService.logout().subscribe((res) => {
+    //   console.log(res);
+    // });
     sessionStorage.removeItem('token');
     this.router.navigate(['login']);
   }

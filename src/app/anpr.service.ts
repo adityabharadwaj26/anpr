@@ -12,7 +12,9 @@ export class AnprService {
 
   getPlate(plateImage): Observable<any> {
     // console.log(plateImage);
-    const params = new HttpHeaders({ accept: 'application/json' });
+    const token = sessionStorage.getItem('token');
+    const authString = 'JWT ' + token;
+    const params = new HttpHeaders({ accept: 'application/json', Authorization: authString });
     const POST_URL: string = environment.API_BASE_URL + '/api/process_plate';
     return this.http.post<any>(POST_URL, plateImage, { headers: params });
   }
@@ -34,7 +36,7 @@ export class AnprService {
 
   logout() {
     const token = sessionStorage.getItem('token');
-    const authString = 'token ' + token;
+    const authString = 'JWT ' + token;
     const headers = new HttpHeaders({ Authorization: authString, accept: 'application/json' });
     const POST_URL: string = environment.API_BASE_URL + 'logout/';
     return this.http.get<any>(POST_URL, { headers });
