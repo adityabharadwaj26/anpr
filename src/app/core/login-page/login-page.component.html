@@ -1,0 +1,42 @@
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-card color="primary" fxLayout="column" fxLayoutAlign="center space-around">
+                <mat-card-title align="center" style="text-align: center;">Login</mat-card-title>
+                <mat-card-content fxFlex>
+                    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center space-around">
+                        <mat-form-field color="primary" fxFlex="50%">
+                            <input matInput placeholder="Username" formControlName="username">
+                            <mat-icon matSuffix color="primary">person</mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <mat-error *ngIf="submitted && f.username.errors" color="primary" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is <strong>required</strong></div>
+                    </mat-error>
+                    <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center space-around">
+                        <mat-form-field color="primary" fxFlex="50%">
+                            <input matInput placeholder="Password" type="password" formControlName="password"
+                                formControlName="password">
+                            <mat-icon matSuffix color="primary">vpn_key</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-error *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is <strong>required</strong></div>
+                    </mat-error>
+                </mat-card-content>
+                <mat-card-actions fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center space-around">
+                    <button fxFlex="50%" mat-raised-button [disabled]="loading" class="btn"
+                        color="primary">LOGIN</button>
+                </mat-card-actions>
+                <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+            </mat-card>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

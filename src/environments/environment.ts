@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // API_BASE_URL: 'http://localhost:8000/'
-  API_BASE_URL: 'https://9748a6feb0dc.ngrok.io/api/'
+  // API_BASE_URL: 'https://518ed0c14d9a.ngrok.io/api/'
+  API_BASE_URL: 'https://518ed0c14d9a.ngrok.io/'
 };
 
 /*

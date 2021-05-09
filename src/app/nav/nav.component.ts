@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnprService } from '../anpr.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavComponent {
 
-  constructor(private router: Router,) { }
+  constructor(private router: Router, private anprService: AnprService) { }
 
   goToBatches(): void {
     this.router.navigate(['batches']);
@@ -23,9 +24,9 @@ export class NavComponent {
   }
 
   logout(): void {
-    // this.aService.logout().subscribe((res) => {
-    //   console.log(res);
-    // });
+    this.anprService.logout().subscribe((res) => {
+      console.log(res);
+    });
     sessionStorage.removeItem('token');
     this.router.navigate(['login']);
   }
